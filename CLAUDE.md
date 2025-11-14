@@ -26,7 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
   - `assignment_09/` - 課題09（じゃんけんプログラム）
     - `assignment_09.pdf` - 課題資料
     - `nkc_09_janken.py` - 課題プログラム
-    - `create_janken_images.py` - 画像作成ヘルパースクリプト
+    - `goo.png`, `choki.png`, `paa.png` - じゃんけん用画像（課題で使用するアセット）
 
 ## プログラムの実行方法
 
