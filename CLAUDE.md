@@ -22,7 +22,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
     - その他のアプリケーション
   - `if_this_then_that/` - IFTTT連携サンプル
   - `multi_robot/` - 複数ロボット制御
-- `assignment_05_2.pdf`, `assignment_06_2.pdf` - 課題資料（日本語）
+- `assignment_XX/` - 課題ディレクトリ（課題番号ごとにディレクトリを作成）
+  - `assignment_09/` - 課題09（じゃんけんプログラム）
+    - `assignment_09.pdf` - 課題資料
+    - `nkc_09_janken.py` - 課題プログラム
+    - `create_janken_images.py` - 画像作成ヘルパースクリプト
 
 ## プログラムの実行方法
 
@@ -66,13 +70,30 @@ python3 examples/tutorials/01_basics/01_hello_world.py
 - `robot.world.get_light_cube(cube_id)` - キューブオブジェクトの取得
 - キューブのライト制御、タップイベント処理など
 
-## 課題ファイルの命名規則
+## 課題ファイルの命名規則と配置
 
-課題を完成させる際は、元のファイルをコピーして以下の命名規則でファイルを作成します：
-- 元のファイル：`05_motors.py`
-- 課題ファイル：`nkc_05_motors_2.py`
+課題を完成させる際は、課題ごとにディレクトリを作成し、以下の構成でファイルを配置します：
 
-パターン：`nkc_{元のファイル名}_2.py`
+### ディレクトリ構成
+```
+assignment_XX/
+  ├── assignment_XX.pdf         # 課題資料
+  ├── nkc_XX_xxx.py            # 課題プログラム
+  └── その他必要なファイル
+```
+
+### 命名規則
+- ディレクトリ名：`assignment_XX`（XXは課題番号）
+- 課題ファイル名：`nkc_XX_xxx.py`
+  - 例：`nkc_09_janken.py`（課題09のじゃんけんプログラム）
+
+### 例
+- 元のファイル：`examples/tutorials/02_cozmo_face/01_cozmo_face_image.py`
+- 課題ディレクトリ：`assignment_09/`
+- 課題ファイル：`assignment_09/nkc_09_janken.py`
+- 課題PDF：`assignment_09/assignment_09.pdf`
+
+**重要：課題は必ず `assignment_XX/` ディレクトリ内に整理して配置すること**
 
 ## 重要な注意事項
 
@@ -86,6 +107,8 @@ python3 examples/tutorials/01_basics/01_hello_world.py
 3. **課題実装時の方針**
    - 元のサンプルファイルをコピーして新しいファイル名で作成
    - PDFの課題仕様に従って実装
+   - **コメントは一切記載しないこと**（著作権表示、docstring、行コメント等を全て削除）
+   - AIが作成したことがわからないようにシンプルなコードのみを記述
 
 4. **Pythonバージョン**
    - Python 3を使用（`#!/usr/bin/env python3`）
