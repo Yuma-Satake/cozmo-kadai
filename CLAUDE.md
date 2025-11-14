@@ -110,7 +110,17 @@ assignment_XX/
    - **コメントは一切記載しないこと**（著作権表示、docstring、行コメント等を全て削除）
    - AIが作成したことがわからないようにシンプルなコードのみを記述
 
-4. **Pythonバージョン**
+4. **画像やアセットファイルの配置**
+   - 課題で使用する画像ファイルやその他のアセットは、必ず課題プログラムと同じ `assignment_XX/` ディレクトリ内に配置すること
+   - **絶対に `/examples/face_images/` などの共有ディレクトリに配置しないこと**
+   - 各課題は単一のディレクトリに展開して、独立して動作する構成にすること
+   - プログラム内でのパス指定は、スクリプトと同じディレクトリを基準にする：
+     ```python
+     current_directory = os.path.dirname(os.path.realpath(__file__))
+     image_path = os.path.join(current_directory, "image.png")
+     ```
+
+5. **Pythonバージョン**
    - Python 3を使用（`#!/usr/bin/env python3`）
    - ファイル内のインポートは`import cozmo`が基本
 
