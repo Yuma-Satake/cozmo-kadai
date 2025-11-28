@@ -10,9 +10,10 @@ from cozmo.util import degrees
 
 DRIVE_SPEED = 100
 TURN_SPEED = 80
-LIFT_SPEED = 3
 HEAD_SPEED = 1
 MOVE_DURATION = 0.3
+LIFT_STEP = 0.1
+HEAD_STEP = 5
 
 
 def getch() -> str:
@@ -64,6 +65,8 @@ def cozmo_program(robot: cozmo.robot.Robot) -> None:
 
     held_cube = None
     running = True
+    current_lift = 0.0
+    current_head = 0.0
     show_status("Ready", held_cube is not None)
 
     while running:
@@ -90,25 +93,21 @@ def cozmo_program(robot: cozmo.robot.Robot) -> None:
             time.sleep(MOVE_DURATION)
             robot.drive_wheels(0, 0)
         elif key == 'r':
-            show_status("Lift Up", held_cube is not None)
-            robot.move_lift(LIFT_SPEED)
-            time.sleep(MOVE_DURATION)
-            robot.move_lift(0)
+            current_lift = min(1.0, current_lift + LIFT_STEP)
+            show_status(f"Lift Up ({current_lift:.1f})", held_cube is not None)
+            robot.set_lift_height(current_lift).wait_for_completed()
         elif key == 'f':
-            show_status("Lift Down", held_cube is not None)
-            robot.move_lift(-LIFT_SPEED)
-            time.sleep(MOVE_DURATION)
-            robot.move_lift(0)
+            current_lift = max(0.0, current_lift - LIFT_STEP)
+            show_status(f"Lift Down ({current_lift:.1f})", held_cube is not None)
+            robot.set_lift_height(current_lift).wait_for_completed()
         elif key == 't':
-            show_status("Head Up", held_cube is not None)
-            robot.move_head(HEAD_SPEED)
-            time.sleep(MOVE_DURATION)
-            robot.move_head(0)
+            current_head = min(44.5, current_head + HEAD_STEP)
+            show_status(f"Head Up ({current_head:.0f})", held_cube is not None)
+            robot.set_head_angle(degrees(current_head)).wait_for_completed()
         elif key == 'g':
-            show_status("Head Down", held_cube is not None)
-            robot.move_head(-HEAD_SPEED)
-            time.sleep(MOVE_DURATION)
-            robot.move_head(0)
+            current_head = max(-22.0, current_head - HEAD_STEP)
+            show_status(f"Head Down ({current_head:.0f})", held_cube is not None)
+            robot.set_head_angle(degrees(current_head)).wait_for_completed()
         elif key == 'l':
             show_status("Looking for cubes...", held_cube is not None)
             lookaround = robot.start_behavior(cozmo.behavior.BehaviorTypes.LookAroundInPlace)
